@@ -1,0 +1,26 @@
+
+doctype html
+html
+  head
+    title= title
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet" href="/css/style.css")
+  body
+    h1 My Books
+    p Books retrieved from your HubSpot account.
+
+    a(href="/form") Add or Update a Book
+
+    if books && books.length
+      .cards
+        each book in books
+          .card
+            h2= book.properties.book_name || 'Untitled Book'
+            p
+              strong Author:
+              |  #{book.properties.author || 'Unknown'}
+            p
+              strong Reading status:
+              |  #{book.properties.reading_status || 'Not specified'}
+    else
+      p No books found yet. Use the form to add your first book.
